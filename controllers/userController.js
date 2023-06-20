@@ -1,7 +1,7 @@
 const users = require('../models/users');
 const csv = require('csvtojson');
 
-const importUser = (req, res) => {
+exports.importUser = (req, res) => {
   try {
     const userData = [];
     csv()
@@ -29,22 +29,28 @@ const importUser = (req, res) => {
   }
 };
 
-//Get All Users
+//Get All Users with search params
 
-const getUsers = async (req, res) => {
+exports.getUsers = async (req, res) => {
   const search = req.query.search || '';
+  const gender = req.query.gender || '';
+  const country = req.query.country || '';
+
+  console.log(req.query);
   const query = {
     name: { $regex: search, $options: 'i' },
   };
+
+  if (gender !== 'All') {
+    query.gender = gender;
+  }
+  if (country !== '') {
+    query.country = { $regex: country, $options: 'i' };
+  }
   try {
     const userData = await users.find(query);
     res.status(200).json(userData);
   } catch (e) {
     res.status(401).json(e);
   }
-};
-
-module.exports = {
-  importUser,
-  getUsers,
 };
