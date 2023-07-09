@@ -1,12 +1,22 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  id: { type: String },
-  name: { type: String },
-  gender: { type: String },
-  age: { type: String },
-  date: { type: String },
-  country: { type: String },
+  "App NO": { type: String },
+  "App Year": { type: String },
+  "App Date": { type: String },
+  "App Name": { type: String, unique: true },
+  Institute: { type: String },
+  "App Country": { type: String },
+  "App City": { type: String },
+  "Priority Date": { type: String },
+  PriorityCountry: { type: String },
+  "Priority Number": { type: String },
+  "Publication Date": { type: String },
+  "Publication Acceptance No": { type: String },
+  Title: { type: String },
+  IPC: { type: String },
+  Abstract: { type: String },
+  Status: { type: String },
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model("users", userSchema);
