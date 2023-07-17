@@ -21,11 +21,11 @@ app.use(cors());
 
 const userRoute = require("./routes/userRoute");
 
-app.use(express.static(path.join(__dirname + "public")));
+app.use(express.static(path.join(__dirname + "/public")));
 
 app.use("/", userRoute);
 
-const PORT = process.env.PORT || 6010;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log("app is running");
