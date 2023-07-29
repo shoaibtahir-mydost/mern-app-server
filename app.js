@@ -8,7 +8,7 @@ const DB = process.env.DATABASE;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const PORT = process.env.PORT || 5000;
-
+require("./services/passport");
 mongoose
   .connect(DB, {
     useUnifiedTopology: true,
@@ -31,28 +31,7 @@ app.use(express.static(path.join(__dirname + "/public")));
 
 app.use("/", userRoute);
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
-    },
-    (accessToken, refreshToken, profile, done) => {
-      console.log("accessToken", accessToken);
-      console.log("refreshToken", refreshToken);
-      console.log("profile", profile);
-      console.log("done", done);
-    }
-  )
-);
-
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-app.get("/auth/google/callback", passport.authenticate("google"));
+require("./routes/userRoute")(app);
 
 app.listen(PORT, () => {
   console.log("app is running");
