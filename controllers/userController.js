@@ -72,7 +72,8 @@ exports.getUsers = async (req, res) => {
   }
 
   try {
-    const userData = await users.find(query);
+    const userData = await users.find(query).sort({ date: -1 }).limit(10);
+
     res.status(200).json(userData);
   } catch (e) {
     res.status(401).json(e);
