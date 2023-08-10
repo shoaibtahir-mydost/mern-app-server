@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const DB = process.env.DATABASE;
 mongoose
-  .connect(DB, {
+  .connect("mongodb://0.0.0.0:27017/test", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
