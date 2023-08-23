@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 const cors = require("cors");
-const DB = process.env.DATABASE;
+
 mongoose
-  .connect("mongodb://0.0.0.0:27017/test", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb://shoaibtahir97:BsBmNfEo0CqlUeK5@ac-5ltp2hw-shard-00-00.7qpftw6.mongodb.net:27017,ac-5ltp2hw-shard-00-01.7qpftw6.mongodb.net:27017,ac-5ltp2hw-shard-00-02.7qpftw6.mongodb.net:27017/?ssl=true&replicaSet=atlas-13di8i-shard-0&authSource=admin&retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("Database Connected"))
   .catch((err) => {
     console.log(err);
