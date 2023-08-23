@@ -3,18 +3,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 // const passport = require("passport");
 const cors = require("cors");
-// const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const DB = process.env.DATABASE;
-// const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-// const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const PORT = process.env.PORT || 5000;
-require("./services/passport");
+
 mongoose
-  .connect("mongodb://0.0.0.0:27017/test", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
+  .connect(
+    "mongodb://shoaibtahir97:BsBmNfEo0CqlUeK5@ac-5ltp2hw-shard-00-00.7qpftw6.mongodb.net:27017,ac-5ltp2hw-shard-00-01.7qpftw6.mongodb.net:27017,ac-5ltp2hw-shard-00-02.7qpftw6.mongodb.net:27017/?ssl=true&replicaSet=atlas-13di8i-shard-0&authSource=admin&retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("Database Connected"))
   .catch((err) => {
     console.log(err);
